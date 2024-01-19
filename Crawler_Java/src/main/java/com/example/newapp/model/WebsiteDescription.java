@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 public class WebsiteDescription {
     private String title;
     private String description;
-    private String sđt;
+    private String sdt;
 }

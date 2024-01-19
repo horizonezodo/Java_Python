@@ -52,3 +52,64 @@
 2024-01-18 16:09:13,851 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8888-exec-2] Completed initialization in 1 ms
 2024-01-18 16:09:40,596 ERROR com.example.newapp.controll.WebsiteController [http-nio-8888-exec-2] Run python script code in cmd Fail : 
 2024-01-18 16:11:52,676 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-4] Run python script code in cmd Success : 
+2024-01-18 16:21:50,647 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-7] Get name website Success : 
+2024-01-18 16:22:17,323 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-6] Run python script code in cmd Success : 
+2024-01-18 16:24:14,932 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-10] Get name website Success : 
+2024-01-18 16:24:41,848 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-1] Run python script code in cmd Success : 
+2024-01-18 16:25:18,269 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-4] Get name website Success : 
+2024-01-18 16:25:44,916 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-3] Run python script code in cmd Success : 
+2024-01-18 16:26:30,552 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-6] Get name website Success : 
+2024-01-18 16:26:51,481 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-9] Get name website Success : 
+2024-01-18 16:26:57,156 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-7] Run python script code in cmd Success : 
+2024-01-18 16:27:18,068 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-8] Run python script code in cmd Success : 
+2024-01-18 16:27:24,045 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-10] Get all list website Success : 
+2024-01-18 16:27:28,105 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-2] Get name website Success : 
+2024-01-18 16:27:54,696 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-1] Run python script code in cmd Success : 
+2024-01-18 16:28:00,826 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-3] Get name website Success : 
+2024-01-18 16:28:04,634 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-5] Get name website Success : 
+2024-01-18 16:28:06,739 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-6] Get name website Success : 
+2024-01-18 16:28:09,404 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-9] Get name website Success : 
+2024-01-18 16:28:10,217 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-7] Get name website Success : 
+2024-01-18 16:28:10,600 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-8] Get name website Success : 
+2024-01-18 16:28:10,791 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-10] Get name website Success : 
+2024-01-18 16:28:10,966 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-2] Get name website Success : 
+2024-01-18 16:28:11,137 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-1] Get name website Success : 
+2024-01-18 16:28:11,311 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-3] Get name website Success : 
+2024-01-18 16:28:27,473 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-4] Run python script code in cmd Success : 
+2024-01-18 16:28:51,333 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-5] Run python script code in cmd Success : 
+2024-01-18 16:28:53,471 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-6] Run python script code in cmd Success : 
+2024-01-18 16:28:54,251 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-9] Run python script code in cmd Success : 
+2024-01-18 16:28:56,961 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-7] Run python script code in cmd Success : 
+2024-01-18 16:28:57,345 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-8] Run python script code in cmd Success : 
+2024-01-18 16:28:57,503 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-10] Run python script code in cmd Success : 
+2024-01-18 16:29:17,959 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-2] Run python script code in cmd Success : 
+2024-01-18 16:29:20,097 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-1] Run python script code in cmd Success : 
+2024-01-18 16:29:20,919 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-3] Run python script code in cmd Success : 
+2024-01-18 16:31:24,143 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-2] Get name website Success : 
+2024-01-18 16:31:50,798 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-10] Run python script code in cmd Success : 
+2024-01-18 16:33:58,501 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-6] Get name website Success : 
+2024-01-18 16:34:25,174 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-4] Run python script code in cmd Success : 
+2024-01-18 16:35:08,188 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-7] Get name website Success : 
+2024-01-18 16:35:34,768 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-9] Run python script code in cmd Success : 
+2024-01-18 16:35:38,893 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-2] Get name website Success : 
+2024-01-18 16:36:05,510 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-8] Run python script code in cmd Success : 
+2024-01-18 16:36:08,541 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-1] Get name website Success : 
+2024-01-18 16:36:35,119 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-10] Run python script code in cmd Success : 
+2024-01-18 16:38:48,858 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-5] Get name website Success : 
+2024-01-18 16:38:52,569 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-9] Get name website Success : 
+2024-01-18 16:38:55,734 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-8] Get name website Success : 
+2024-01-18 16:39:01,748 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-10] Get name website Success : 
+2024-01-18 16:39:15,433 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-4] Run python script code in cmd Success : 
+2024-01-18 16:39:19,126 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-7] Run python script code in cmd Success : 
+2024-01-18 16:39:22,321 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-2] Run python script code in cmd Success : 
+2024-01-18 16:39:28,326 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-1] Run python script code in cmd Success : 
+2024-01-18 16:42:12,596 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-9] Get name website Success : 
+2024-01-18 16:42:28,513 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-10] Get name website Success : 
+2024-01-18 16:42:31,466 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-7] Get name website Success : 
+2024-01-18 16:42:39,392 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-5] Run python script code in cmd Success : 
+2024-01-18 16:42:55,212 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-8] Run python script code in cmd Success : 
+2024-01-18 16:42:57,930 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-1] Get name website Success : 
+2024-01-18 16:42:58,120 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-4] Run python script code in cmd Success : 
+2024-01-18 16:43:05,760 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-6] Get name website Success : 
+2024-01-18 16:43:24,875 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-2] Run python script code in cmd Success : 
+2024-01-18 16:43:32,640 INFO com.example.newapp.controll.WebsiteController [http-nio-8888-exec-3] Run python script code in cmd Success : 

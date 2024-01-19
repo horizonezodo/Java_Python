@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -200,35 +201,46 @@ public class WebsiteController {
     @GetMapping("/getAllData/{id}")
     public ResponseEntity<?> getAllDataFromCsv(@PathVariable("id") Long id) {
         try {
-            // Thực hiện lệnh "cd /d E:\python_leaning\TestPython\crawler\venv"
-            executeCommand("cmd /c cd /d "+environment_url);
+            Optional<Website> otp = webRepo.getWebsiteById(id);
+            if(otp.isEmpty()){
+                ResponseError error = new ResponseError();
+                error.setErrorMessage("Không tìm thấy id này");
+                log.error("ID not found: " );
+                return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);
+            }else{
+                Website website = otp.get();
+                String fileName = website.getSpider_url().substring(website.getSpider_url().lastIndexOf("/") + 1);
+                String script_load_data_file_path =new File("").getAbsolutePath()+ "\\" + root + "\\" + fileName;
 
-            // Thực hiện lệnh ".\Scripts\activate"
-            executeCommand("cmd /c ."+active_environment);
+                // Thực hiện lệnh "cd /d E:\python_leaning\TestPython\crawler\venv"
+                executeCommand("cmd /c cd /d "+environment_url);
 
-            Thread.sleep(10000);
+                // Thực hiện lệnh ".\Scripts\activate"
+                executeCommand("cmd /c ."+active_environment);
 
-            // Thực hiện lệnh "cd E:\python_leaning\TestPython\crawler\crawler\spiders\"
-            executeCommand("cmd /c cd "+url_spider_folder);
+                // Thực hiện lệnh "cd E:\python_leaning\TestPython\crawler\crawler\spiders\"
+                executeCommand("cmd /c cd "+url_spider_folder);
 
-            // Thực hiện lệnh "python run_scrawler.py"
-            executeCommand("cmd /c python " + script_python_scrawler_path);
+                // Thực hiện lệnh "python run_scrawler.py"
+                executeCommand("cmd /c python " + script_python_scrawler_path +" "+ script_load_data_file_path);
 
-            Thread.sleep(15000);
 
-            ObjectMapper objectMapper = new ObjectMapper();
+                ObjectMapper objectMapper = new ObjectMapper();
 
-            List<WebsiteDescription> websites = objectMapper.readValue(new File(json_rs_file_path),
-                    objectMapper.getTypeFactory().constructCollectionType(List.class, WebsiteDescription.class));
+                List<WebsiteDescription> websites = objectMapper.readValue(new File(json_rs_file_path),
+                        objectMapper.getTypeFactory().constructCollectionType(List.class, WebsiteDescription.class));
 
-            log.info("Run python script code in cmd Success : " );
-            return new ResponseEntity<>(websites,HttpStatus.OK);
+                log.info("Run python script code in cmd Success : " );
+                return new ResponseEntity<>(websites,HttpStatus.OK);
+            }
+
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
         log.error("Run python script code in cmd Fail : " );
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
     private static void executeCommand(String command) throws IOException, InterruptedException {
         ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/c", command);
         processBuilder.redirectErrorStream(true);
