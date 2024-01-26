@@ -7,4 +7,22 @@ public class GetResponse {
     String name;
     String url;
     String spider_url;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getSpider_url() {
+		return spider_url;
+	}
+	public void setSpider_url(String spider_url) {
+		this.spider_url = spider_url;
+	}
 }

@@ -29,7 +29,7 @@ public class WebsiteController {
     @Autowired
     WebsiteRepository webRepo;
 
-    Path root = Paths.get("uploads");
+    Path root = Paths.get("E:\\uploads");
 
     @Value("${result_json}")
     String json_rs_file_path ;
@@ -210,27 +210,34 @@ public class WebsiteController {
             }else{
                 Website website = otp.get();
                 String fileName = website.getSpider_url().substring(website.getSpider_url().lastIndexOf("/") + 1);
-                String script_load_data_file_path =new File("").getAbsolutePath()+ "\\" + root + "\\" + fileName;
+                String script_load_data_file_path = root + "\\" + fileName;
 
                 // Thực hiện lệnh "cd /d E:\python_leaning\TestPython\crawler\venv"
-                executeCommand("cmd /c cd /d "+environment_url);
+//                executeCommand("cmd /c cd /d "+environment_url);
+//
+//                // Thực hiện lệnh ".\Scripts\activate"
+//                executeCommand("cmd /c ."+active_environment);
+//
+//                // Thực hiện lệnh "cd E:\python_leaning\TestPython\crawler\crawler\spiders\"
+//                executeCommand("cmd /c cd "+url_spider_folder);
+//
+//                // Thực hiện lệnh "python run_scrawler.py"
+//                executeCommand("cmd /c python " + script_python_scrawler_path +" "+ script_load_data_file_path);
+                String pythonScriptPath = "E:\\python_leaning\\TestPython\\crawler\\crawler\\spiders\\testMethod.py";
+                ProcessBuilder pb = new ProcessBuilder("python", pythonScriptPath, script_load_data_file_path);
+                pb.redirectErrorStream(true);
+                Process process = pb.start();pb.start();
+                BufferedReader bfr = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line = "";
+                while ((line = bfr.readLine()) != null) {
+                    System.out.println(line);
+                }
 
-                // Thực hiện lệnh ".\Scripts\activate"
-                executeCommand("cmd /c ."+active_environment);
-
-                // Thực hiện lệnh "cd E:\python_leaning\TestPython\crawler\crawler\spiders\"
-                executeCommand("cmd /c cd "+url_spider_folder);
-
-                // Thực hiện lệnh "python run_scrawler.py"
-                executeCommand("cmd /c python " + script_python_scrawler_path +" "+ script_load_data_file_path);
-
-
+                Thread.sleep(1000);
                 ObjectMapper objectMapper = new ObjectMapper();
 
                 List<WebsiteDescription> websites = objectMapper.readValue(new File(json_rs_file_path),
                         objectMapper.getTypeFactory().constructCollectionType(List.class, WebsiteDescription.class));
-
-                log.info("Run python script code in cmd Success : " );
                 return new ResponseEntity<>(websites,HttpStatus.OK);
             }
 
@@ -241,22 +248,23 @@ public class WebsiteController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    private static void executeCommand(String command) throws IOException, InterruptedException {
-        ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/c", command);
-        processBuilder.redirectErrorStream(true);
+//    private static void executeCommand(String command) throws IOException, InterruptedException {
+//        ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/c", command);
+//        processBuilder.redirectErrorStream(true);
+//
+//        Process process = processBuilder.start();
+//        InputStream inputStream = process.getInputStream();
+//        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//
+//        String line;
+//        while ((line = bufferedReader.readLine()) != null) {
+//            System.out.println(line);
+//        }
+//
+//        int exitCode = process.waitFor();
+//        System.out.println("Exit Code: " + exitCode);
+//    }
 
-        Process process = processBuilder.start();
-        InputStream inputStream = process.getInputStream();
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            System.out.println(line);
-        }
-
-        int exitCode = process.waitFor();
-        System.out.println("Exit Code: " + exitCode);
-    }
 
 }

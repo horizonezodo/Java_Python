@@ -37,7 +37,7 @@ def run_crawler():
     process = CrawlerProcess({
         'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
         'FEED_FORMAT': 'json',  # Định dạng xuất
-        'FEED_URI': 'E:\\python_leaning\\TestPython\\crawler\\crawler\\spiders\\output.json'  # Đường dẫn tệp xuất
+        'FEED_URI': 'output.json'  # Đường dẫn tệp xuất
     })
     process.crawl(CrawlerSpider)
     process.start()
@@ -115,11 +115,11 @@ if __name__ == "__main__":
     # print(f"description_xpath {spidersConfig.description_xpath}")
     # print(f"sdt_xpath {spidersConfig.sdt_xpath}")
 
-    if check_file_exists('E:\\python_leaning\\TestPython\\crawler\\crawler\\spiders\\output.json'):
-        os.remove('E:\\python_leaning\\TestPython\\crawler\\crawler\\spiders\\output.json')
+    if check_file_exists('output.json'):
+        os.remove('output.json')
 
     run_crawler()
-    json_file_path = 'E:\\python_leaning\\TestPython\\crawler\\crawler\\spiders\\output.json'
+    json_file_path = 'output.json'
     data = load_json_with_unicode(json_file_path)
-    output_file_path = 'E:\\Crawler\\data\\encode.json'
+    output_file_path = 'E:\\ResultData\\encode.json'
     dump_json(data, output_file_path)

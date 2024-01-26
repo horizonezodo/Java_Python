@@ -96,6 +96,6 @@ FEED_EXPORT_ENCODING = "utf-8"
 
 
 # Trong file settings.py của bạn
-ITEM_PIPELINES = {'scrapy.exporters.JsonItemExporter': 1}
+#ITEM_PIPELINES = {'scrapy.exporters.JsonItemExporter': 1}
 FEED_FORMAT="json"
 FEED_URI="output.json"

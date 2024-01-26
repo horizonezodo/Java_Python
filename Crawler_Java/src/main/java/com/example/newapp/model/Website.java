@@ -18,5 +18,5 @@ public class Website {
     private Long id;
     private String website_name;
     private String website_url;
-    private String spider_url;
+    private String spider_url;  
 }
