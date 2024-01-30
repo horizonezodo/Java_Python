@@ -13,3 +13,6 @@ Bước 6: Kiểm tra xem các annotation có vấn đề gì không ( annotatio
 Bước 7: Export file war bằng sts4
 Bước 8: Coppy file war lên webapps 
 Bước 9: Khởi chạy tomcat -> done
+
+Trong quá trình deploy lên tomcat thì nếu sử dụng đường dẫn tuyệt đối thì check lại các đường dẫn
+Nếu deploy lên tomcat thì nên check lại những phương thức có sử dụng cmd trong windown và bin/bash trong ubuntu để kiểm tra lại xem các method đúng hay không
