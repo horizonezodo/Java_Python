@@ -21,6 +21,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @RestController
 @CrossOrigin(origins = "*",maxAge = 3600)
@@ -133,6 +134,7 @@ public class WebsiteController {
         Optional<Website> otp = webRepo.getWebsiteById(id);
         if (otp.isPresent()){
             Website newWebsite = otp.get();
+            deleteFile(newWebsite.getSpider_url());
             webRepo.delete(newWebsite);
             log.info("Delete website Success : " );
             return new ResponseEntity<>(HttpStatus.OK);
@@ -198,6 +200,16 @@ public class WebsiteController {
         return fileName;
     }
 
+    private void deleteFile(String url_file_path){
+       String file_path = url_file_path.replace("/","\\");
+        Path path = Paths.get(file_path);
+        try {
+            Files.delete(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @GetMapping("/getAllData/{id}")
     public ResponseEntity<?> getAllDataFromCsv(@PathVariable("id") Long id) {
         try {
@@ -212,17 +224,6 @@ public class WebsiteController {
                 String fileName = website.getSpider_url().substring(website.getSpider_url().lastIndexOf("/") + 1);
                 String script_load_data_file_path = root + "\\" + fileName;
 
-                // Thực hiện lệnh "cd /d E:\python_leaning\TestPython\crawler\venv"
-//                executeCommand("cmd /c cd /d "+environment_url);
-//
-//                // Thực hiện lệnh ".\Scripts\activate"
-//                executeCommand("cmd /c ."+active_environment);
-//
-//                // Thực hiện lệnh "cd E:\python_leaning\TestPython\crawler\crawler\spiders\"
-//                executeCommand("cmd /c cd "+url_spider_folder);
-//
-//                // Thực hiện lệnh "python run_scrawler.py"
-//                executeCommand("cmd /c python " + script_python_scrawler_path +" "+ script_load_data_file_path);
                 String pythonScriptPath = "E:\\python_leaning\\TestPython\\crawler\\crawler\\spiders\\testMethod.py";
                 ProcessBuilder pb = new ProcessBuilder("python", pythonScriptPath, script_load_data_file_path);
                 pb.redirectErrorStream(true);
@@ -248,23 +249,6 @@ public class WebsiteController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-//    private static void executeCommand(String command) throws IOException, InterruptedException {
-//        ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/c", command);
-//        processBuilder.redirectErrorStream(true);
-//
-//        Process process = processBuilder.start();
-//        InputStream inputStream = process.getInputStream();
-//        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//
-//        String line;
-//        while ((line = bufferedReader.readLine()) != null) {
-//            System.out.println(line);
-//        }
-//
-//        int exitCode = process.waitFor();
-//        System.out.println("Exit Code: " + exitCode);
-//    }
 
 
 }
