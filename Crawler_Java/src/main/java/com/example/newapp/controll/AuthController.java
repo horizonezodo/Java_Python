@@ -1,22 +1,17 @@
 package com.example.newapp.controll;
 
 import com.example.newapp.exception.TokenRefreshException;
-import com.example.newapp.jwt.JwtUtils;
+import com.example.newapp.jwt.JwtUntils;
 import com.example.newapp.model.RefreshToken;
 import com.example.newapp.model.User;
 import com.example.newapp.repo.UserRepository;
-import com.example.newapp.request.ChangePassword;
-import com.example.newapp.request.LoginRequest;
-import com.example.newapp.request.RefreshTokenRequest;
-import com.example.newapp.request.RegisterRequest;
-import com.example.newapp.response.GetResponse;
+import com.example.newapp.request.*;
 import com.example.newapp.response.LoginResponse;
 import com.example.newapp.response.RefreshTokenResponse;
 import com.example.newapp.response.ResponseError;
 import com.example.newapp.service.RefreshTokenServiceImpl;
 import com.example.newapp.service.UserDetailsImpl;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +34,7 @@ public class AuthController {
     AuthenticationManager manager;
 
     @Autowired
-    JwtUtils untils;
+    JwtUntils untils;
 
     @Autowired
     UserRepository repo;
@@ -74,20 +69,7 @@ public class AuthController {
         return new ResponseEntity<>(new ResponseError("801"), HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody RegisterRequest request){
-        if(repo.existsByEmail(request.getEmail())){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }else{
-            User user = new User();
-            user.setUser_role(request.getUser_role());
-            user.setEmail(request.getEmail());
-            user.setUsername(request.getUsername());
-            user.setPassword(encoder.encode(request.getPassword()));
-            User saved_user = repo.save(user);
-            return new ResponseEntity<>(saved_user, HttpStatus.CREATED);
-        }
-    }
+
 
     @PostMapping("/refreshtoken")
     public ResponseEntity<?> refreshtoken( @RequestBody RefreshTokenRequest request) {
@@ -119,9 +101,27 @@ public class AuthController {
         Optional<User> otp = repo.findByEmail(request.getEmail());
         if(otp.isPresent()){
             User user = otp.get();
-            user.setPassword(encoder.encode(request.getNew_pass()));
+            if(encoder.matches(request.getOld_pass(), user.getPassword())){
+                user.setPassword(encoder.encode(request.getNew_pass()));
+                log.info("Change Password Success : " + user.getUsername());
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+            ResponseError error = new ResponseError("Invalid old password");
+            log.error("Invalid old password with email: " + request.getEmail());
+            return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+        }
+        ResponseError error = new ResponseError("Invalid email");
+        log.error("Invalid email: " + request.getEmail());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/check-Token")
+    public ResponseEntity<?> checkToken(@RequestBody checkTokenRequest req){
+        if(untils.validateJwtToken(req.getToken())){
+            log.info(" Token is valid " + req.getToken());
             return new ResponseEntity<>(HttpStatus.OK);
         }
+        log.error("Invalid token: " + req.getToken());
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 

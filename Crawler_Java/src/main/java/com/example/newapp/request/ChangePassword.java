@@ -6,4 +6,5 @@ import lombok.Data;
 public class ChangePassword {
     String email;
     String new_pass;
+    String old_pass;
 }

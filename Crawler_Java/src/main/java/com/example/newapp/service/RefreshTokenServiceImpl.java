@@ -54,6 +54,6 @@ public class RefreshTokenServiceImpl {
     @Transactional
     public int deleteByUserId(Long userId) {
         log.info("delete refresh token logout success : " );
-        return repo.deleteByAccount(userRepo.findById(userId).get());
+        return repo.deleteByUser(userRepo.findById(userId).get());
     }
 }
