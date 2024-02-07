@@ -276,6 +276,11 @@ public class WebsiteController {
 
                     List<WebsiteDescription> websites = objectMapper.readValue(new File(json_rs_file_path),
                             objectMapper.getTypeFactory().constructCollectionType(List.class, WebsiteDescription.class));
+                    for (WebsiteDescription websiteDescription: websites){
+                        if(!(websiteDescription.getLink().startsWith("http"))){
+                            websiteDescription.setLink("https://" + website.getWebsite_url() + websiteDescription.getLink());
+                        }
+                    }
                     return new ResponseEntity<>(websites,HttpStatus.OK);
                 }
                 ResponseError error = new ResponseError("File type is not python file");
@@ -316,6 +321,11 @@ public class WebsiteController {
                 ObjectMapper objectMapper = new ObjectMapper();
                 List<WebsiteDescription> websites = objectMapper.readValue(new File(json_rs_file_path),
                         objectMapper.getTypeFactory().constructCollectionType(List.class, WebsiteDescription.class));
+                for (WebsiteDescription websiteDescription: websites){
+                    if(!(websiteDescription.getLink().startsWith("http"))){
+                        websiteDescription.setLink("https://" + website.getWebsite_url() + websiteDescription.getLink());
+                    }
+                }
                 data.setWebsiteDescription(websites);
                 dataList.add(data);
             }else{

@@ -10,4 +10,5 @@ public class WebsiteDescription {
     private String title;
     private String description;
     private String sdt;
+    private String link;
 }

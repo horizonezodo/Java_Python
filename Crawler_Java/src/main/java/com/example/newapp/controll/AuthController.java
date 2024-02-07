@@ -9,6 +9,7 @@ import com.example.newapp.request.*;
 import com.example.newapp.response.LoginResponse;
 import com.example.newapp.response.RefreshTokenResponse;
 import com.example.newapp.response.ResponseError;
+import com.example.newapp.service.MailServiceImpl;
 import com.example.newapp.service.RefreshTokenServiceImpl;
 import com.example.newapp.service.UserDetailsImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import java.util.Optional;
+import java.util.Random;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -44,6 +47,26 @@ public class AuthController {
 
     @Autowired
     private RefreshTokenServiceImpl refreshService;
+
+    @Autowired
+    private MailServiceImpl service;
+
+    @PostMapping("/send-mail-change-pass")
+    public ResponseEntity<?> sendMailChangePass(@RequestBody SendMailChangePass req) throws MessagingException {
+        if(repo.existsByEmail(req.getEmail())){
+            Random ran = new Random();
+            int minValue = 100000;
+            int maxValue = 999999;
+            int ranValue  = ran.nextInt((maxValue - minValue) + 1) + minValue;
+            service.SendMail(req.getEmail(), String.valueOf(ranValue));
+            log.info("Mail send success with email " + req.getEmail());
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        ResponseError error = new ResponseError("Email is not exists");
+        log.error("Email is not exists with email " + req.getEmail());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+
+    }
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticationUserUsingEmail(@RequestBody LoginRequest request){
